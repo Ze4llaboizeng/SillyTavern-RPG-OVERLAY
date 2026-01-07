@@ -1,8 +1,8 @@
 {
-    "name": "ST RPG Overlay",
+    "name": "Simple RPG Overlay",
     "version": "1.0.0",
-    "author": "Zeallll",
-    "description": "A gamification layer that adds HP/MP bars controlled by AI chat responses.",
+    "author": "YourName",
+    "description": "Adds an RPG status window with HP, MP, Gold, and Inventory.",
     "js": "index.js",
     "css": "style.css"
 }
