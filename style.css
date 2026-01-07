@@ -1,109 +1,88 @@
-/* ปุ่มลอย Floating Toggle Button */
-#rpg-toggle-btn {
+#rpg-overlay {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: #444; /* สีปุ่ม */
-    color: white;
-    border-radius: 50%;
-    border: 2px solid #777;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 2001; /* อยู่เหนือทุกอย่าง */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
-    transition: transform 0.2s, background 0.2s;
-    user-select: none;
-}
-
-#rpg-toggle-btn:hover {
-    background: #666;
-    transform: scale(1.1);
-}
-
-#rpg-toggle-btn:active {
-    transform: scale(0.9);
-}
-
-/* กรอบรวม Status Bar */
-#rpg-status-container {
-    position: fixed;
-    bottom: 80px; /* อยู่เหนือปุ่มลอยขึ้นมา */
+    top: 60px;
     right: 20px;
     width: 250px;
-    background: rgba(0, 0, 0, 0.85);
+    background-color: rgba(20, 20, 30, 0.95);
+    border: 1px solid #4a4a4a;
+    border-radius: 10px;
     padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #555;
     z-index: 2000;
+    color: #eee;
     font-family: sans-serif;
-    color: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    transition: opacity 0.3s, transform 0.3s;
-    
-    /* สถานะเริ่มต้น: ซ่อนอยู่หรือไม่ตามต้องการ */
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-/* คลาสสำหรับแสดงผล (Toggle Class) */
-#rpg-status-container.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-/* Responsive: ปรับขนาดเมื่ออยู่บนมือถือ */
-@media screen and (max-width: 600px) {
-    #rpg-status-container {
-        width: 80%; /* กว้างเกือบเต็มจอ */
-        right: 10%;
-        bottom: 80px;
-    }
-}
-
-/* สไตล์หลอดเลือดเดิม */
-.rpg-bar-label {
-    font-size: 14px;
+.rpg-header {
     font-weight: bold;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.rpg-bar-bg {
-    width: 100%;
-    height: 18px;
-    background-color: #222;
-    border-radius: 9px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #444;
-}
-
-.rpg-bar-fill {
-    height: 100%;
-    width: 100%;
-    transition: width 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-
-#hp-bar-fill { background: linear-gradient(90deg, #c0392b, #e74c3c); }
-#mp-bar-fill { background: linear-gradient(90deg, #2980b9, #3498db); }
-
-/* Settings Panel Input Style */
-.rpg-setting-row {
     margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+    cursor: move; /* บอกว่าลากได้ (ถ้าเขียน script เพิ่ม) */
+}
+
+.rpg-stat {
+    margin-bottom: 8px;
+}
+
+.stat-label {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    font-size: 0.9em;
 }
-.rpg-setting-row input {
-    width: 80px;
-    text-align: center;
+
+.bar-container {
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.hp-bar { background-color: #e74c3c; height: 100%; transition: width 0.3s; }
+.mp-bar { background-color: #3498db; height: 100%; transition: width 0.3s; }
+
+.rpg-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.rpg-btn {
+    background: #444;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 2px 8px;
+}
+.rpg-btn:hover { background: #666; }
+
+.inventory-section {
+    margin-top: 15px;
+    border-top: 1px solid #555;
+    padding-top: 10px;
+}
+
+#inventory-list {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#inventory-list li {
+    background: #2a2a2a;
+    margin-bottom: 4px;
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+}
+
+.delete-item {
+    color: #e74c3c;
+    cursor: pointer;
+    font-weight: bold;
 }
