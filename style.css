@@ -1,88 +1,75 @@
+/* style.css */
 #rpg-overlay {
     position: fixed;
     top: 60px;
     right: 20px;
-    width: 250px;
+    width: 250px; /* ความกว้างตอนกางออก */
     background-color: rgba(20, 20, 30, 0.95);
     border: 1px solid #4a4a4a;
     border-radius: 10px;
-    padding: 15px;
     z-index: 2000;
     color: #eee;
     font-family: sans-serif;
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: width 0.3s;
+    overflow: hidden; /* ซ่อนส่วนที่ล้นตอนย่อ */
 }
 
+/* คลาสสำหรับตอนย่อหน้าต่าง */
+#rpg-overlay.minimized {
+    width: 40px; /* ความกว้างตอนหุบเหลือแค่ไอคอน */
+    height: 40px;
+    border-radius: 50%; /* เปลี่ยนเป็นวงกลม */
+    cursor: pointer;
+    background-color: #3498db; /* สีปุ่มตอนหุบ */
+    border: 2px solid #fff;
+}
+
+/* ส่วนหัว */
 .rpg-header {
+    padding: 10px 15px;
     font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-    border-bottom: 1px solid #555;
-    padding-bottom: 5px;
-    cursor: move; /* บอกว่าลากได้ (ถ้าเขียน script เพิ่ม) */
-}
-
-.rpg-stat {
-    margin-bottom: 8px;
-}
-
-.stat-label {
+    background: rgba(0,0,0,0.2);
+    cursor: pointer; /* คลิกที่หัวเพื่อย่อ/ขยายได้ */
     display: flex;
     justify-content: space-between;
-    font-size: 0.9em;
+    align-items: center;
+    border-bottom: 1px solid #555;
 }
 
-.bar-container {
-    height: 10px;
-    background-color: #333;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 2px;
+/* ไอคอนตอนหุบ (ซ่อนอยู่ปกติ) */
+.minimized-icon {
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
 }
 
+#rpg-overlay.minimized .minimized-icon {
+    display: block;
+}
+
+#rpg-overlay.minimized .rpg-header,
+#rpg-overlay.minimized .rpg-content {
+    display: none; /* ซ่อนไส้ในตอนหุบ */
+}
+
+.rpg-content {
+    padding: 15px;
+}
+
+/* ... (Style เดิมคงไว้ด้านล่างนี้) ... */
+.rpg-stat { margin-bottom: 8px; }
+.stat-label { display: flex; justify-content: space-between; font-size: 0.9em; }
+.bar-container { height: 10px; background-color: #333; border-radius: 5px; overflow: hidden; margin-top: 2px; }
 .hp-bar { background-color: #e74c3c; height: 100%; transition: width 0.3s; }
 .mp-bar { background-color: #3498db; height: 100%; transition: width 0.3s; }
-
-.rpg-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-}
-
-.rpg-btn {
-    background: #444;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 3px;
-    padding: 2px 8px;
-}
+.rpg-controls { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.rpg-btn { background: #444; border: none; color: white; cursor: pointer; border-radius: 3px; padding: 2px 8px; }
 .rpg-btn:hover { background: #666; }
-
-.inventory-section {
-    margin-top: 15px;
-    border-top: 1px solid #555;
-    padding-top: 10px;
-}
-
-#inventory-list {
-    list-style: none;
-    padding: 0;
-    max-height: 150px;
-    overflow-y: auto;
-}
-
-#inventory-list li {
-    background: #2a2a2a;
-    margin-bottom: 4px;
-    padding: 4px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85em;
-}
-
-.delete-item {
-    color: #e74c3c;
-    cursor: pointer;
-    font-weight: bold;
-}
+.inventory-section { margin-top: 15px; border-top: 1px solid #555; padding-top: 10px; }
+#inventory-list { list-style: none; padding: 0; max-height: 150px; overflow-y: auto; }
+#inventory-list li { background: #2a2a2a; margin-bottom: 4px; padding: 4px; display: flex; justify-content: space-between; font-size: 0.85em; }
+.delete-item { color: #e74c3c; cursor: pointer; font-weight: bold; }
